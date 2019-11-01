@@ -1,0 +1,59 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+.title{
+    background-color: rgb(250, 235, 29);
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid rgb(216, 212, 2);
+    padding: 25px;
+    margin-top:0;
+    
+    
+}
+
+
+.post-node{
+    background-color: rgb(214, 211, 211);
+    margin-right:auto;
+    margin-left:auto;
+    box-sizing:content-box;
+    height:300px;
+    width:300px;
+    
+
+
+}
+
+.username{
+    color: red;
+    position: relative;
+}
+
+img{
+    position:relative;
+    max-width:100%;
+    height:auto;
+}
+
+.comments{
+    position:relative;
+
+}
+
+.add-comments{
+    position:relative;
+}
+
+
+.bottom-footer{
+    background-color: rgb(250, 235, 29);
+    padding:15px;
+    bottom: 0;
+    width:100%;
+    text-align:center;
+    position:fixed;
+    bottom:0;
+}
