@@ -1,3 +1,9 @@
+header{
+    display:flex;
+    justify-content: center;
+}
+
+
 body{
     margin:0;
     padding:0;
@@ -5,7 +11,7 @@ body{
     margin-bottom:120px;
 }
 
-.title{
+header{
     background-color: rgb(250, 235, 29);
     width: 100%;
     text-align: center;
@@ -13,9 +19,12 @@ body{
     padding: 25px;
     margin-top:0;
     
-    
-    
-    
+}
+
+.all-nodes{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 
@@ -25,8 +34,8 @@ body{
     margin-right:auto;
     margin-left:auto;
     box-sizing:content-box;
-    height:320px;
-    width:300px;
+    height:520px;
+    width:500px;
     border-radius: 8px;
     margin-top: 15px;
     
@@ -76,7 +85,6 @@ img{
 
 .comment-square{
     padding:0px;
-    position:absolute;
     display:flex;
     flex-direction: column;
     margin: 4px;
@@ -106,6 +114,7 @@ img{
 #comment-form{
     display:flex;
     justify-content:space-between;
+    align-items:flex-end;
 
 }
 
@@ -126,12 +135,11 @@ img{
 .bottom-footer{
     background-color: rgb(250, 235, 29);
     padding:15px;
-    bottom: 0;
     width:100%;
     text-align:center;
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
+    position: absolute;
+    bottom: inherit;
     border-top: 2px solid rgb(216, 212, 2);
 }
+
+
