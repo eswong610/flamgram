@@ -142,4 +142,7 @@ img{
     border-top: 2px solid rgb(216, 212, 2);
 }
 
+button{
+    cursor: pointer;
+}
 

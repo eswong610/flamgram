@@ -21,15 +21,15 @@
         <div class="post-header">
         <div class="username">flamingo1</div>
         <div class="symbols"> 
-                <i class="material-icons">
+                <button class="like-button"><i class="material-icons">
                         favorite_border
-                        </i>
-                <i class="material-icons">
+                        </i></button>
+                <button class="comment-button"><i class="material-icons">
                         mode_comment
-                        </i>
-                <i class="material-icons">
+                        </i></button>
+                <button class="share-button"><i class="material-icons">
                         launch
-                        </i>
+                        </i></button>
                 
         </div>
         </div>
@@ -46,9 +46,9 @@
             <p class="comment-text"><i class="material-icons"> emoji_people</i>samp comment 1</p>
         </div>
         <div class="add-comments">
-            <form id="comment-form">
+            <form class="comment-form">
             <input type="text" placeholder="add a comment" id="comment-input">   
-        </input-type>
+        
             <button type="submit" class="comment-post">post</button>
             </form>
         </div>
@@ -58,36 +58,38 @@
     <!-- a post node -->
     <section class="post-node">
             <div class="post-header">
-            <div class="username">flamingo1</div>
-            <div class="symbols"> 
-                    <i class="material-icons">
+                <div class="username">flamingo1</div>
+                <div class="symbols"> 
+                    <button class="like-button"><i class="material-icons">
                             favorite_border
-                            </i>
-                    <i class="material-icons">
+                            </i></button>
+                        <i class="material-icons">
                             mode_comment
                             </i>
-                    <i class="material-icons">
+                        <i class="material-icons">
                             launch
                             </i>
                     
+                </div>
             </div>
-            </div>
+
             <figure>
                 <img src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555448117/shape/mentalfloss/800pxtitle.jpg" alt="flampic">
             </figure>
-            <div class="comment-square">
-            
             <figcaption class="caption">
                 Flamingo friends
             </figcaption>
-        
+
+            <div class="comment-square">
+            
             <div class="comments">
                 <p class="comment-text"><i class="material-icons"> emoji_people</i>samp comment 1</p>
             </div>
+
             <div class="add-comments">
-                <form id="comment-form">
-                <input type="text" placeholder="add a comment" id="comment-input">   
-            </input-type>
+                <form class="comment-form">
+                <input type="text" placeholder="add a comment" id="comment-input" >   
+            
                 <button type="submit" class="comment-post">post</button>
                 </form>
             </div>
@@ -99,9 +101,9 @@
                 <div class="post-header">
                 <div class="username">flamingo1</div>
                 <div class="symbols"> 
-                        <i class="material-icons">
+                    <button class="like-button"><i class="material-icons">
                                 favorite_border
-                                </i>
+                                </i></button>
                         <i class="material-icons">
                                 mode_comment
                                 </i>
@@ -124,9 +126,9 @@
                     <p class="comment-text"><i class="material-icons"> emoji_people</i>samp comment 1</p>
                 </div>
                 <div class="add-comments">
-                    <form id="comment-form">
+                    <form class="comment-form">
                     <input type="text" placeholder="add a comment" id="comment-input">   
-                </input-type>
+                
                     <button type="submit" class="comment-post">post</button>
                     </form>
                 </div>
@@ -140,14 +142,16 @@
     <footer class="bottom-footer">
         <p>copyright</p>
         <form id="post-form">
-            <input type="text" placeholder="add a post" id="post-input"><i class="material-icons">
-                    add_a_photo
-                    </i></input-type>
+            <input type='text' placeholder='username' id='username-input'>
+            <input type='text' placeholder='img url' id='img-url'>
+
+            <input type="text" placeholder="caption" id="post-caption">
+            <button type = "submit" class="post-post">post</button>
 
         </form>    
         </footer>
 
         <script src="posts.js"></script>
-        <script src="script.js"></script>
+        <script src="script1.js"></script>
 </body>
 </html>
