@@ -30,7 +30,7 @@ header{
 
 
 .post-node{
-    background-color: rgb(240, 238, 238);
+    background-color: rgb(255, 255, 255);
     margin-right:auto;
     margin-left:auto;
     box-sizing:content-box;
@@ -38,6 +38,7 @@ header{
     width:500px;
     border-radius: 8px;
     margin-top: 15px;
+    margin-bottom: 15px;
     
 
 }
@@ -64,7 +65,7 @@ header{
 }
 
 figure{
-    margin:5px;
+    margin:0px;
 }
 
 img{
@@ -145,4 +146,5 @@ img{
 button{
     cursor: pointer;
 }
+
 

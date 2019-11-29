@@ -1,9 +1,3 @@
-
-
-//create postelements
-
-
-
 function createPostElement (post) {
         
         const bigPostNode = document.createElement("section");
@@ -27,7 +21,7 @@ function createPostElement (post) {
                     const likeButton = document.createElement('button');
                     likeButton.innerHTML = "<i class='material-icons'>favorite_border</i>";
                     likeButton.classList.add('like-button');
-                    console.log(post.id)
+                    
                     symbols.appendChild(likeButton);
                     likeButton.addEventListener('click', ()=>{
                         console.log('like post ' + post.id);
@@ -65,9 +59,23 @@ function createPostElement (post) {
 
                     const commentText = document.createElement('p');
                     commentText.classList.add('comment-text');
-                    commentText.innerHTML = "<i class='material-icons'> emoji_people</i>";
-                    commentText.innerText = JSON.stringify(post.comments);
-                    comments.appendChild(commentText);
+                    //commentText.innerHTML = "<i class='material-icons'> emoji_people</i>";
+                    
+                    
+                if (post['comments']) {
+                    for (i=0; i<post['comments'].length; i++){
+                        let newMsg = document.createElement('p');
+                        newMsg.innerHTML= "<i class='material-icons'> emoji_people</i>";
+                        newMsg.classList.add('comment-text');
+                        newMsg.innerText= post.comments[i]['message'];
+                        
+                        comments.appendChild(newMsg);
+                    }
+                }
+
+                    
+                     comments.appendChild(commentText);
+
                     
                 const addComments = document.createElement('div');
                 addComments.classList.add('add-comments');
@@ -78,8 +86,14 @@ function createPostElement (post) {
                     commentForm.innerHTML = "<input type='text' placeholder='add a comment' id='comment-input'>\n <button type='submit' class='comment-post'>post</button>";
                     commentForm.addEventListener('submit', (event)=>{
                         event.preventDefault();
-                        //gets value of the input 
                         const messageText = commentForm.querySelector('#comment-input').value;
+                        let addedMsg = document.createElement('p');
+                        addedMsg.classList.add('comment-text');
+                        addedMsg.innerText= messageText;
+                        comments.appendChild(addedMsg);
+                        
+
+                        
                     })
                     addComments.appendChild(commentForm);
 
@@ -99,3 +113,43 @@ function loadPosts() {
 }
 
 loadPosts();
+
+const postForm = document.querySelector('#post-form');
+postForm.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    let postUsername = document.querySelector('#username-input').value;
+    let postImgUrl = document.querySelector('#post-img-url').value;
+    let comment = document.querySelector('#post-caption').value;
+
+    let newUserPost = {
+        username: postUsername,
+        comments: [{message: comment}],
+        image_url: postImgUrl,
+    }
+
+    posts.push(newUserPost);
+    
+    loadPosts();
+
+
+})
+
+function formatMsg(postComments) {
+    //console.log(postComments)
+    for (i=0; i<postComments.length; i++) {
+        const newMsg = document.createElement('p');
+        newMsg.classList.add('comment-text');
+        newMsg.innerHTML = "<i class='material-icons'> emoji_people</i>";
+        newMsg.innerText = postComments[i][message];
+        comments.appendChild(newMsg);
+        
+
+        //console.log(postComments[i]['message'])
+
+    }
+}
+
+
+const url = 'https://instasam-one.herokuapp.com/api/insta_posts';
+fetch(url)
+.then((data)=> console.log(data.json()))
