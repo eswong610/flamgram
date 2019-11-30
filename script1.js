@@ -97,13 +97,30 @@ function createPostElement (post) {
                         const messageText = commentForm.querySelector('#comment-input').value;
                         let addedMsg = document.createElement('p');
                         addedMsg.classList.add('comment-text');
-                        addedMsg.innerText= messageText;
-                        comments.appendChild(addedMsg);
+                        //addedMsg.innerText= messageText;
+                        //comments.appendChild(addedMsg);
+
+                        let commenturl = `https://instasam-one.herokuapp.com/api/insta_posts/${post.id}/comments`
+
+                        fetch(url,  fetch(commenturl, {
+                            method: 'POST',
+                            headers: new Headers({"Content-Type": "application/json"}),
+                            body: JSON.stringify({
+                                "message": messageText,
+                              }) // posts to url 
+                    
+                        }).then(()=> {(location.reload())})//refreshes page
+                        .then(()=> fetchData())//to redisplay items 
+                        .catch((err)=> console.log(err)))
+
+
                         
 
                         
                     })
                     addComments.appendChild(commentForm);
+
+
 
                         
             return bigPostNode;
@@ -166,6 +183,7 @@ function fetchData () {
 fetch(url)
 .then((data) => data.json())
 .then((posts) => {
+    posts = posts.reverse();
     console.log(posts); 
     loadPosts(posts)
 })
@@ -191,10 +209,10 @@ postForm.addEventListener('submit', (event)=>{
             "message": postCap,
             "image_url": IMGpost,
             "comments": []
-          })
+          }) // posts to url 
 
-    }).then(()=> {(location.reload())})
-    .then(()=> fetchData())
+    }).then(()=> {(location.reload())})//refreshes page
+    .then(()=> fetchData())//to redisplay items 
     .catch((err)=> console.log(err));
 })
 
