@@ -110,37 +110,39 @@ function createPostElement (post) {
     }
 
 
-function loadPosts(posts) {
+function loadPosts(newposts) {
     let postsContainer = document.querySelector('.all-nodes');
     postsContainer.innerHTML="";
 
-    for (item of posts) {
+    newposts.forEach((item)=>  {
         const toBeAppend = createPostElement(item);
         postsContainer.appendChild(toBeAppend);
-    }
+    })
 }
 
-loadPosts(posts);
+//to post locally 
+//loadPosts(newposts);
 
-const postForm = document.querySelector('#post-form');
-postForm.addEventListener('submit', (event)=>{
-    event.preventDefault();
-    let postUsername = document.querySelector('#username-input').value;
-    let postImgUrl = document.querySelector('#post-img-url').value;
-    let comment = document.querySelector('#post-caption').value;
+// const postForm = document.querySelector('#post-form');
+// postForm.addEventListener('submit', (event)=>{
+//     event.preventDefault();
+//     let postUsername = document.querySelector('#username-input').value;
+//     let postImgUrl = document.querySelector('#post-img-url').value;
+//     let comment = document.querySelector('#post-caption').value;
 
-    let newUserPost = {
-        username: postUsername,
-        comments: [{message: comment}],
-        image_url: postImgUrl,
-    }
+//     let newUserPost = {
+//         username: postUsername,
+//         comments: [{message: comment}],
+//         image_url: postImgUrl,
+//     }
 
-    posts.push(newUserPost);
+//     //posts.push(newUserPost);
     
-    loadPosts();
+//     //loadPosts();
+//     postData();
 
 
-})
+// })
 
 function formatMsg(postComments) {
     //console.log(postComments)
@@ -157,19 +159,43 @@ function formatMsg(postComments) {
     }
 }
 
+//fetch data from api
 const url = 'https://instasam-one.herokuapp.com/api/insta_posts';
+
+function fetchData () {
 fetch(url)
 .then((data) => data.json())
-
-
-
 .then((posts) => {
     console.log(posts); 
     loadPosts(posts)
 })
 .catch(console.error)
 
-//.then((obj)=> {createElementPost(obj)});
-// .then(data=> data.array)
-// //.then((data)=> console.log(data))
-// .catch((err)=> {console.log('didnt work')})
+}
+
+//someproblem with posts??? 
+
+
+const postForm = document.querySelector('#post-form');
+postForm.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    let username = document.querySelector('#username-input').value;
+    let IMGpost = document.querySelector('#post-img-url').value;
+    let postCap = document.querySelector('#post-caption').value;
+
+    fetch(url, {
+        method: 'POST',
+        headers: new Headers({"Content-Type": "application/json"}),
+        body: JSON.stringify({
+            "username": username, 
+            "message": postCap,
+            "image_url": IMGpost,
+            "comments": []
+          })
+
+    }).then(()=> {(location.reload())})
+    .then(()=> fetchData())
+    .catch((err)=> console.log(err));
+})
+
+fetchData()
