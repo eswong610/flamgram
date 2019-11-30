@@ -1,3 +1,5 @@
+
+
 function createPostElement (post) {
         
         const bigPostNode = document.createElement("section");
@@ -42,7 +44,8 @@ function createPostElement (post) {
             bigPostNode.appendChild(figure);
 
                 const image = document.createElement('img');
-                image.setAttribute("src", post.image_url);
+                const image_url = post.image_url || 'https://cdn.shopify.com/s/files/1/1061/1924/products/Hugging_Face_Emoji_2028ce8b-c213-4d45-94aa-21e1a0842b4d_large.png';
+                image.setAttribute("src", image_url);
                 figure.appendChild(image);
 
             const figureCaption = document.createElement('figcaption');
@@ -64,10 +67,15 @@ function createPostElement (post) {
                     
                 if (post['comments']) {
                     for (i=0; i<post['comments'].length; i++){
+
                         let newMsg = document.createElement('p');
-                        newMsg.innerHTML= "<i class='material-icons'> emoji_people</i>";
+                        // let newIcon = document.createElement('i');
+                        // newIcon.classList.add('material-icons');
+                        // newIcon.innerText = 'emoji_people';
+                        // comments.appendChild(newIcon);
+                        //newMsg.innerHTML= `<i class='material-icons'> emoji_people</i>`;
                         newMsg.classList.add('comment-text');
-                        newMsg.innerText= post.comments[i]['message'];
+                        newMsg.innerText=  post.comments[i]['message'];
                         
                         comments.appendChild(newMsg);
                     }
@@ -102,7 +110,7 @@ function createPostElement (post) {
     }
 
 
-function loadPosts() {
+function loadPosts(posts) {
     let postsContainer = document.querySelector('.all-nodes');
     postsContainer.innerHTML="";
 
@@ -112,7 +120,7 @@ function loadPosts() {
     }
 }
 
-loadPosts();
+loadPosts(posts);
 
 const postForm = document.querySelector('#post-form');
 postForm.addEventListener('submit', (event)=>{
@@ -149,7 +157,19 @@ function formatMsg(postComments) {
     }
 }
 
-
 const url = 'https://instasam-one.herokuapp.com/api/insta_posts';
 fetch(url)
-.then((data)=> console.log(data.json()))
+.then((data) => data.json())
+
+
+
+.then((posts) => {
+    console.log(posts); 
+    loadPosts(posts)
+})
+.catch(console.error)
+
+//.then((obj)=> {createElementPost(obj)});
+// .then(data=> data.array)
+// //.then((data)=> console.log(data))
+// .catch((err)=> {console.log('didnt work')})
