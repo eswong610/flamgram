@@ -217,3 +217,8 @@ postForm.addEventListener('submit', (event)=>{
 })
 
 fetchData()
+
+let openButton = document.querySelector('.unhide-button');
+openButton.addEventListener('click', (event)=>{
+    event
+})
